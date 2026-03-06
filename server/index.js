@@ -309,11 +309,16 @@ app.get("/auth/me", authenticateToken, async (req, res) => {
 
 
 
-//----- login ------------------------------
+// ----- login ------------------------------
 
 app.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    // check required fields
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email and password are required" });
+    }
 
     // 1) find user by email
     const result = await pool.query(
@@ -321,6 +326,7 @@ app.post("/auth/login", async (req, res) => {
       [email]
     );
 
+    // if user not found
     if (result.rows.length === 0) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
@@ -328,25 +334,36 @@ app.post("/auth/login", async (req, res) => {
     const user = result.rows[0];
 
     // 2) compare password with hashed password
-    const ok = await bcrypt.compare(password, user.password_hash);
-    if (!ok) {
+    const passwordMatch = await bcrypt.compare(password, user.password_hash);
+
+    if (!passwordMatch) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
-    // 3) make a token that stores user id + role
+    // 3) create JWT token
     const token = jwt.sign(
-      { userId: user.id, role: user.role },
+      {
+        userId: user.id,
+        role: user.role,
+      },
       JWT_SECRET,
       { expiresIn: "7d" }
     );
 
-    // 4) send token + basic user info (no password_hash!)
+    // 4) return token + safe user info
     res.json({
       token,
-      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
     });
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("LOGIN ERROR:", err);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
