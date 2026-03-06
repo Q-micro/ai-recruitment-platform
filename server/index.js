@@ -1,21 +1,34 @@
 //.env file
 require("dotenv").config();
-
-//icons
-<link
-  rel="stylesheet"
-  href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
-/>
-
-
 // Import express framework (used to create the server)
 const express = require("express");
+
+// Import PostgreSQL connection tool
+const { Pool } = require("pg");
+
+
+//  database
+
+
+console.log("DATABASE_URL =", process.env.DATABASE_URL);
+console.log("DB_NAME =", process.env.DB_NAME);
+
+
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+
 
 // Import CORS (allows frontend to talk to backend)
 const cors = require("cors");
 
-// Import PostgreSQL connection tool
-const { Pool } = require("pg");
+
+
 
 // Import password hashing library
 const bcrypt = require("bcrypt");
@@ -32,13 +45,31 @@ app.use(cors());
 // Allow server to read JSON from requests
 app.use(express.json());
 
-// Create connection pool to PostgreSQL database
-const pool = new Pool({
-  user: "postgres",          
-  host: "localhost",         
-  database: "Khutwa_db",   
-  password: "1234",  
-  port: 5432,                 
+//TESTINGGGGGGG//
+// TEST ROUTE #1 - put this FIRST
+app.get("/dbtest", (req, res) => {
+  res.json({ message: "ROUTES ARE WORKING!" });
+});
+
+console.log("DATABASE_URL =", process.env.DATABASE_URL);
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+//////////////////////////////////////////////////
+
+//TESTIN
+
+app.get("/dbtest", async (req, res) => {
+  try {
+    const r = await pool.query("SELECT current_database() AS db, NOW() AS now");
+    res.json(r.rows[0]);
+  } catch (e) {
+    console.error("DBTEST ERROR:", e);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 // Simple test route
@@ -322,7 +353,3 @@ app.post("/auth/login", async (req, res) => {
 
 
 
-// Start the server on port 3001
-app.listen(3001, () => {
-  console.log("Server running on http://localhost:3001");
-});
