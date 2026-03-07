@@ -1,0 +1,111 @@
+.dashboard-page {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f123b, #090d2e);
+  color: white;
+}
+
+.dashboard-sidebar {
+  width: 250px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  padding: 24px 18px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-logo {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.dashboard-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard-link {
+  text-decoration: none;
+  color: #d7dbff;
+  padding: 12px 14px;
+  border-radius: 14px;
+  transition: 0.2s ease;
+}
+
+.dashboard-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-link.active {
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 24px;
+}
+
+.dashboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.dashboard-breadcrumb {
+  color: #a9b3ff;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.dashboard-user {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.stat-title {
+  font-size: 14px;
+  color: #b8c0ff;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 28px;
+  margin: 0;
+}
+
+.stat-subtitle {
+  margin-top: 8px;
+  color: #d7dbff;
+  font-size: 13px;
+}
+
+.dashboard-panel {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}

@@ -2,9 +2,8 @@ import { useState } from "react";
 import { login } from "../api/auth";
 import { useNavigate, Link } from "react-router-dom";
 import bg from "../assets/bg.png";
-import whiteLogo from "../assets/whitelogo.png"; // <-- added
+import whiteLogo from "../assets/whitelogo.png";
 import "./Auth.css";
-
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,36 +12,41 @@ export default function Login() {
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
 
-
   const navigate = useNavigate();
-
 
   async function handleLogin(e) {
     e.preventDefault();
     setErr("");
     setLoading(true);
 
-
     try {
       const data = await login(email, password);
+
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
-      navigate("/");
+
+      if (data.user.role === "candidate") {
+        navigate("/candidate");
+      } else if (data.user.role === "employer") {
+        navigate("/employer");
+      } else if (data.user.role === "admin") {
+        navigate("/admin");
+      } else {
+        setErr("Unknown user role");
+        navigate("/login");
+      }
     } catch (error) {
-      setErr(error.message);
+      setErr(error.message || "Login failed");
     } finally {
       setLoading(false);
     }
   }
 
-
   return (
     <div className="auth-home" style={{ backgroundImage: `url(${bg})` }}>
       <div className="form_container">
-        {/* added logo, kept everything else the same */}
         <img className="auth-logo" src={whiteLogo} alt="Company logo" />
         <h2>Login</h2>
-
 
         <form onSubmit={handleLogin}>
           <div className="input_box">
@@ -55,7 +59,6 @@ export default function Login() {
             />
             <i className="uil uil-envelope-alt email" />
           </div>
-
 
           <div className="input_box">
             <input
@@ -73,27 +76,22 @@ export default function Login() {
             />
           </div>
 
-
           <div className="option_field">
             <span className="checkbox">
               <input type="checkbox" id="remember" />
               <label htmlFor="remember">Remember me</label>
             </span>
 
-
             <a href="#" onClick={(e) => e.preventDefault()}>
               Forgot password?
             </a>
           </div>
 
-
           <button className="primary_btn" type="submit" disabled={loading}>
             {loading ? "Please wait..." : "Login Now"}
           </button>
 
-
           {err && <div className="error_text">{err}</div>}
-
 
           <div className="login_signup">
             Don&apos;t have an account? <Link to="/signup">Signup</Link>

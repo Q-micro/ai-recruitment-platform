@@ -352,7 +352,9 @@ app.post("/auth/login", async (req, res) => {
 
     // 4) return token + safe user info
     res.json({
-      token,
+
+ message: "Login successful",
+       token,
       user: {
         id: user.id,
         name: user.name,
