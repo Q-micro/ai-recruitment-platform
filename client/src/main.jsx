@@ -7,26 +7,19 @@ import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 const theme = createTheme({
   palette: {
     mode: "dark",
-    background: {
-      default: "#0b1437",
-      paper: "#111c44",
-    },
     primary: {
-      main: "#0075ff",
+      main: "#FF6500",
     },
-    secondary: {
-      main: "#6ad2ff",
+    background: {
+      default: "#0B192C",
+      paper: "#1E3E62",
     },
     text: {
       primary: "#ffffff",
-      secondary: "#a3aed0",
     },
   },
   shape: {
     borderRadius: 16,
-  },
-  typography: {
-    fontFamily: "Inter, Arial, sans-serif",
   },
 });
 
