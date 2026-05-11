@@ -1,3 +1,8 @@
+/* The `@import
+url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");`
+line in the CSS code is importing the Google Fonts stylesheet for the font family "Poppins" with
+various font weights (200, 300, 400, 500, 600, 700). This allows the CSS to use the "Poppins" font
+family in different weights for styling elements within the webpage. */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"); 
 
 

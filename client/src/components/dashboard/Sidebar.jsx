@@ -1,3 +1,5 @@
+/* This code snippet is a React component named `Sidebar` that renders a sidebar navigation menu based
+on the user's role. Here's a breakdown of what the code does: */
 import { NavLink } from "react-router-dom";
 import "./dashboard.css";
 

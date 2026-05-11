@@ -1,3 +1,4 @@
+/* This code snippet is a React component named `Jobs`. Here's a breakdown of what it does: */
 import { useEffect, useState } from "react";
 import { getJobs } from "../api/jobs";
 
@@ -33,7 +34,9 @@ export default function Jobs() {
           <p style={{ margin: "6px 0" }}>
             {j.location} • {j.employment_type}
           </p>
-          <small>Status: {j.status} • {new Date(j.created_at).toLocaleString()}</small>
+          <small>
+            Status: {j.status} • {new Date(j.created_at).toLocaleString()}
+          </small>
         </div>
       ))}
     </div>

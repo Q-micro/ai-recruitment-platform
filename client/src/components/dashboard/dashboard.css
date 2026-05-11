@@ -1,3 +1,5 @@
+/* The provided code snippet is a CSS stylesheet defining styles for a dashboard page layout. Here's a
+breakdown of what each CSS rule is doing: */
 .dashboard-page {
   display: flex;
   min-height: 100vh;

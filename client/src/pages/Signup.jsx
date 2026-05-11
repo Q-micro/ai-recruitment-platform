@@ -1,3 +1,7 @@
+/**
+ * The Signup component in this React application handles user registration by capturing and validating
+ * user input before sending it to the backend for signup.
+ */
 import { useState } from "react";
 import { signup } from "../api/auth";
 import { useNavigate, Link } from "react-router-dom";
@@ -5,15 +9,27 @@ import bg from "../assets/bg.png";
 import "./Auth.css";
 
 export default function Signup() {
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("candidate");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    name: "",
+    role: "candidate",
+    email: "",
+    password: "",
+  });
+
   const [showPw, setShowPw] = useState(false);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
+  function handleChange(e) {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
 
   async function handleSignup(e) {
     e.preventDefault();
@@ -21,10 +37,36 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      await signup(name, email, password, role);
+      const cleanName = form.name.trim();
+      const cleanEmail = form.email.trim().toLowerCase();
+      const cleanPassword = form.password;
+
+      if (!cleanName) return setErr("Name is required");
+      if (!cleanEmail) return setErr("Email is required");
+      if (!cleanPassword) return setErr("Password is required");
+      if (cleanPassword.length < 8)
+        return setErr("Password must be at least 8 characters");
+
+      const hasLetter = /[a-zA-Z]/.test(cleanPassword);
+      const hasNumber = /\d/.test(cleanPassword);
+
+      if (!hasLetter || !hasNumber) {
+        return setErr(
+          "Password must include at least one letter and one number",
+        );
+      }
+
+      const payload = {
+        name: cleanName,
+        email: cleanEmail,
+        password: cleanPassword,
+        role: form.role,
+      };
+
+      await signup(payload);
       navigate("/login");
     } catch (error) {
-      setErr(error.message);
+      setErr(error?.response?.data?.error || error?.message || "Signup failed");
     } finally {
       setLoading(false);
     }
@@ -38,17 +80,23 @@ export default function Signup() {
         <form onSubmit={handleSignup}>
           <div className="input_box">
             <input
+              name="name"
               placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={form.name}
+              onChange={handleChange}
               required
             />
             <i className="uil uil-user user" />
           </div>
 
           <div className="input_box">
-            <select value={role} onChange={(e) => setRole(e.target.value)} required>
-              <option value="candidate">Candidate</option>
+            <select
+              name="role"
+              value={form.role}
+              onChange={handleChange}
+              required
+            >
+              <option value="candidate">Candidate / Job seeker</option>
               <option value="employer">Employer</option>
             </select>
             <i className="uil uil-briefcase role" />
@@ -57,9 +105,10 @@ export default function Signup() {
           <div className="input_box">
             <input
               type="email"
+              name="email"
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={form.email}
+              onChange={handleChange}
               required
             />
             <i className="uil uil-envelope-alt email" />
@@ -68,9 +117,10 @@ export default function Signup() {
           <div className="input_box">
             <input
               type={showPw ? "text" : "password"}
+              name="password"
               placeholder="Create password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={form.password}
+              onChange={handleChange}
               required
             />
             <i className="uil uil-lock password" />
@@ -82,7 +132,7 @@ export default function Signup() {
           </div>
 
           <button className="primary_btn" type="submit" disabled={loading}>
-            {loading ? "Please wait..." : "Signup Now"}
+            {loading ? "Please wait..." : "Create Account"}
           </button>
 
           {err && <div className="error_text">{err}</div>}

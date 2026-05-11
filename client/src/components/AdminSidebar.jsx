@@ -1,9 +1,15 @@
+/**
+ * The `AdminSidebar` function in JavaScript React creates a sidebar component with navigation links
+ * and buttons for an admin dashboard interface.
+ */
 import { Box, Stack, Typography, Button, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
 import WorkIcon from "@mui/icons-material/Work";
 import BusinessIcon from "@mui/icons-material/Business";
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import PaymentsIcon from "@mui/icons-material/Payments";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -25,6 +31,18 @@ const navButtonBase = {
   position: "relative",
 };
 
+const pageButtonStyle = (isActive) => ({
+  ...navButtonBase,
+  backgroundColor: isActive ? "#071735" : "transparent",
+  borderLeft: isActive ? "3px solid #FF6500" : "3px solid transparent",
+  borderRadius: 0,
+  pl: 2,
+  color: isActive ? "#ffffff" : "#c7d2fe",
+  "&:hover": {
+    backgroundColor: "#081a3a",
+  },
+});
+
 export default function AdminSidebar() {
   const navigate = useNavigate();
 
@@ -33,8 +51,6 @@ export default function AdminSidebar() {
     localStorage.removeItem("user");
     navigate("/login");
   }
-
-
 
   return (
     <Box
@@ -51,36 +67,25 @@ export default function AdminSidebar() {
         flexDirection: "column",
       }}
     >
-
-<Box
-  sx={{
-    display: "flex",
-    alignItems: "center",
-    mb: 2.5,
-  }}
->
-
-<Box
-  sx={{
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    mb: 0.8,
-    width: "100%",
-  }}
->
-  <Box
-    component="img"
-    src={logo}
-    alt="Admin logo"
-    sx={{
-      width: 80,
-      display: "block",
-    }}
-  />
-</Box>
-</Box>
-
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          mb: 2.5,
+          width: "100%",
+        }}
+      >
+        <Box
+          component="img"
+          src={logo}
+          alt="Admin logo"
+          sx={{
+            width: 80,
+            display: "block",
+          }}
+        />
+      </Box>
 
       <Box
         sx={{
@@ -110,10 +115,10 @@ export default function AdminSidebar() {
       </Box>
 
       <Box sx={{ mb: 2 }}>
-        <NavLink to="/admin" style={linkStyle}>
+        <NavLink to="/admin" end style={linkStyle}>
           {({ isActive }) => (
             <Button
-              startIcon={<DashboardIcon sx={{ fontSize: 18 }} />}
+              startIcon={<AssessmentIcon sx={{ fontSize: 18 }} />}
               sx={{
                 ...navButtonBase,
                 color: isActive ? "#FF9A4D" : "#ff9a4d",
@@ -141,59 +146,57 @@ export default function AdminSidebar() {
       </Typography>
 
       <Stack spacing={0.5}>
-        <NavLink to="/admin/reports" style={linkStyle}>
+        <NavLink to="/admin/candidates" style={linkStyle}>
           {({ isActive }) => (
             <Button
-              sx={{
-                ...navButtonBase,
-                backgroundColor: isActive ? "#071735" : "transparent",
-                borderLeft: isActive ? "3px solid #FF6500" : "3px solid transparent",
-                borderRadius: 0,
-                pl: 2,
-                "&:hover": {
-                  backgroundColor: "#081a3a",
-                },
-              }}
+              startIcon={<PeopleIcon sx={{ fontSize: 18 }} />}
+              sx={pageButtonStyle(isActive)}
             >
-              Reports
+              Candidates
             </Button>
           )}
         </NavLink>
 
-        <NavLink to="/admin/products" style={linkStyle}>
+        <NavLink to="/admin/jobs" style={linkStyle}>
           {({ isActive }) => (
             <Button
-              sx={{
-                ...navButtonBase,
-                backgroundColor: isActive ? "#071735" : "transparent",
-                borderLeft: isActive ? "3px solid #FF6500" : "3px solid transparent",
-                borderRadius: 0,
-                pl: 2,
-                "&:hover": {
-                  backgroundColor: "#081a3a",
-                },
-              }}
+              startIcon={<WorkIcon sx={{ fontSize: 18 }} />}
+              sx={pageButtonStyle(isActive)}
             >
-              Products
+              Jobs
             </Button>
           )}
         </NavLink>
 
-        <NavLink to="/admin/tasks" style={linkStyle}>
+        <NavLink to="/admin/companies" style={linkStyle}>
           {({ isActive }) => (
             <Button
-              sx={{
-                ...navButtonBase,
-                backgroundColor: isActive ? "#071735" : "transparent",
-                borderLeft: isActive ? "3px solid #FF6500" : "3px solid transparent",
-                borderRadius: 0,
-                pl: 2,
-                "&:hover": {
-                  backgroundColor: "#081a3a",
-                },
-              }}
+              startIcon={<BusinessIcon sx={{ fontSize: 18 }} />}
+              sx={pageButtonStyle(isActive)}
             >
-              Task
+              Companies
+            </Button>
+          )}
+        </NavLink>
+
+        <NavLink to="/admin/sales" style={linkStyle}>
+          {({ isActive }) => (
+            <Button
+              startIcon={<PaymentsIcon sx={{ fontSize: 18 }} />}
+              sx={pageButtonStyle(isActive)}
+            >
+              Sales
+            </Button>
+          )}
+        </NavLink>
+
+        <NavLink to="/admin/ats-cv-generator" style={linkStyle}>
+          {({ isActive }) => (
+            <Button
+              startIcon={<SettingsIcon sx={{ fontSize: 18 }} />}
+              sx={pageButtonStyle(isActive)}
+            >
+              ATS
             </Button>
           )}
         </NavLink>
@@ -215,6 +218,7 @@ export default function AdminSidebar() {
               sx={{
                 ...navButtonBase,
                 color: isActive ? "#ffffff" : "#c7d2fe",
+                backgroundColor: isActive ? "#081a3a" : "transparent",
                 "&:hover": {
                   backgroundColor: "#081a3a",
                 },
