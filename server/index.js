@@ -22,6 +22,10 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { createClient } from "@supabase/supabase-js";
 dotenv.config();
 
+// For handling file paths in ES modules.
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Supabase storage client used for candidate CV files.
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -4336,3 +4340,10 @@ app.get(
     }
   },
 );
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+});
