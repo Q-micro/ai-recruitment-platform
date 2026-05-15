@@ -105,8 +105,6 @@ const JWT_SECRET = process.env.JWT_SECRET;
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const uploadsRoot = path.join(__dirname, "uploads");
 const cvUploadsDir = path.join(uploadsRoot, "cv");
