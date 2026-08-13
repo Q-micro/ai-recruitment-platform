@@ -21,10 +21,13 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
 import { createClient } from "@supabase/supabase-js";
 dotenv.config();
-
+console.log("SUPABASE_URL:", process.env.SUPABASE_URL);
+console.log("SUPABASE KEY EXISTS:", !!process.env.SUPABASE_SERVICE_ROLE_KEY);
+console.log("CV BUCKET:", process.env.SUPABASE_CV_BUCKET);
 // For handling file paths in ES modules.
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 // Supabase storage client used for candidate CV files.
 const supabase = createClient(
@@ -60,17 +63,41 @@ async function uploadCvToSupabase({ candidateId, file, folder = "original" }) {
 
   console.log("Uploading to Supabase path:", filePath);
 
-  const { data, error } = await supabase.storage
-    .from(CV_BUCKET)
-    .upload(filePath, file.buffer, {
-      contentType: file.mimetype || "application/pdf",
-      upsert: true,
-    });
+  // const { data, error } = await supabase.storage
+  //   .from(CV_BUCKET)
+  //   .upload(filePath, file.buffer, {
+  //     contentType: file.mimetype || "application/pdf",
+  //     upsert: true,
+  //   });
 
-  if (error) {
-    console.error("Supabase upload error:", error);
-    throw error;
-  }
+  // if (error) {
+  //   console.error("Supabase upload error:", error);
+  //   throw error;
+  // }
+
+console.log("CV_BUCKET:", CV_BUCKET);
+console.log("FILE PATH:", filePath);
+console.log("FILE SIZE:", file?.buffer?.length);
+console.log("FILE TYPE:", file?.mimetype);
+
+const { data, error } = await supabase.storage
+  .from(CV_BUCKET)
+  .upload(filePath, file.buffer, {
+    contentType: file.mimetype || "application/pdf",
+    upsert: true,
+  });
+
+if (error) {
+  console.error("Supabase upload error:", {
+    message: error.message,
+    name: error.name,
+    status: error.status,
+    cause: error.cause,
+    full: error,
+  });
+
+  throw error;
+}
 
   const { data: publicData } = supabase.storage
     .from(CV_BUCKET)
@@ -97,6 +124,8 @@ const upload = multer({
 });
 
 const { Pool } = pkg;
+console.log("DATABASE_URL loaded:", process.env.DATABASE_URL?.replace(/:[^:@]+@/, ":****@"))
+
 
 // Express app configuration and upload folders.
 const app = express();
@@ -154,6 +183,7 @@ const uploadCV = multer({
 });
 
 app.use("/uploads", express.static(uploadsRoot));
+console.log("DATABASE_URL:", process.env.DATABASE_URL?.slice(0, 30))
 
 // PostgreSQL database connection.
 const pool = new Pool({
@@ -3654,6 +3684,8 @@ app.get("/api/employer/dashboard", async (req, res) => {
 });
 
 app.post("/api/candidate/cv/extract", upload.single("cv"), async (req, res) => {
+  console.log("CV ROUTE HIT");
+console.log("SUPABASE_URL IN ROUTE:", process.env.SUPABASE_URL);
   try {
     const candidateId = req.body.candidate_id || null;
 
@@ -3738,10 +3770,16 @@ Do not invent missing data.
     });
   } catch (error) {
     console.error("CV extraction error:", error);
-    return res.status(500).json({
-      message: "CV extraction failed",
-      error: error.message,
-    });
+    // return res.status(500).json({
+    //   message: "CV extraction failed",
+    //   error: error.message,
+    // });
+
+
+     res.status(500).json({
+    message: error.message,
+    error: error.stack,
+  });
   }
 });
 
@@ -3802,8 +3840,7 @@ app.get("/api/candidate/generated-cvs/:candidateId", async (req, res) => {
 
 app.post("/api/candidate/ats-cv/generate", async (req, res) => {
   try {
-    const { edited_cv_data } = req.body;
-
+const { edited_cv_data, candidate_id } = req.body;
     const cvSource = {
       ...(edited_cv_data || {}),
     };
@@ -3955,12 +3992,47 @@ Rules:
       filePath,
     });
 
-    return res.json({
-      success: true,
-      generated,
-      saved: false,
-      download_url: cvUrl,
-    });
+    // return res.json({
+    //   success: true,
+    //   generated,
+    //   saved: false,
+    //   download_url: cvUrl,
+    // });
+
+let savedCv = null;
+
+try {
+  const candidateId = req.body.candidate_id;
+
+  if (candidateId) {
+    const savedResult = await pool.query(
+      `
+      INSERT INTO generated_cvs (
+        candidate_id,
+        cv_url,
+        created_at
+      )
+      VALUES ($1, $2, CURRENT_TIMESTAMP)
+      RETURNING *
+      `,
+      [candidateId, cvUrl],
+    );
+
+    savedCv = savedResult.rows[0];
+  }
+} catch (saveError) {
+  console.error("SAVE GENERATED CV ERROR:", saveError);
+}
+
+return res.json({
+  success: true,
+  generated,
+  saved: !!savedCv,
+  cv: savedCv,
+  download_url: cvUrl,
+});
+
+
   } catch (error) {
     console.error("ATS CV generation error:", error);
 
