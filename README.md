@@ -27,9 +27,9 @@ A full-stack recruitment platform designed to streamline the recruitment process
 
 ### AI-Assisted Recruitment
 - AI-powered CV parsing and data extraction
-- Automatic candidate profile population from CVs
 - Candidate-job matching and match percentage scoring
-- Semantic search and recommendation functionality
+- AI keyword candidate matching 
+- AI keyword employer candidate search 
 - ATS CV generation
 - Candidate strengths and missing-skills analysis
 - AI-assisted match explanations
@@ -49,12 +49,6 @@ A full-stack recruitment platform designed to streamline the recruitment process
 **Development & Deployment:** Git, Docker, Render
 
 **Design & Development Tools:** Figma, dbdiagram.io, Eraser.io, Thunder Client, Visual Studio Code
-
-## System Overview
-
-The platform was developed using a modular full-stack architecture consisting of a React frontend, Node.js and Express.js backend, PostgreSQL database, Supabase cloud services, and AI-assisted recruitment functionality.
-
-The system supports separate workflows and dashboards for candidates, employers, and administrators while providing centralized recruitment and application management.
 
 ## My Contribution
 
