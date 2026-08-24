@@ -26,13 +26,13 @@ Candidates can create and manage their professional profiles, including personal
 
 ## Jobs & Applications
 
-![Jobs and Applications](screenshots/jobs-applications.gif)
+![Jobs and Applications](screenshots/jobsandapplications.gif)
 
 Candidates can browse available job opportunities, apply for positions, and track the status of their applications.
 
 ## ATS CV Generation
 
-![ATS CV Generation](screenshots/ats-cv.gif)
+![ATS CV Generation](screenshots/ATS.gif)
 
 The platform provides an ATS-focused CV generation workflow to help candidates create structured and job-ready resumes.
 
