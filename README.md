@@ -11,7 +11,7 @@ A visual walkthrough of the platform showcasing the main workflows and user expe
 # Candidate Experience
 
 ## Home & Navigation
-
+![Candidate Home](screenshots/intro.png)
 ![Candidate Home](screenshots/home.gif)
 
 The candidate interface provides access to available jobs, applications, profile management, notifications, and other recruitment features.
