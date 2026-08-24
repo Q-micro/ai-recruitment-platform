@@ -26,7 +26,7 @@ Candidates can create and manage their professional profiles, including personal
 
 ## Jobs & Applications
 
-![Jobs and Applications](screenshots/jobsandapplications.gif)
+![Jobs and Applications](screenshots/jobandapplications.gif)
 
 Candidates can browse available job opportunities, apply for positions, and track the status of their applications.
 
