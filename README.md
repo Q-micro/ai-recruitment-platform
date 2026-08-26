@@ -20,22 +20,19 @@ The candidate interface provides access to available jobs, applications, profile
 
 ## Profile Management
 
-![Candidate Profile](screenshots/profile.gif)
-
-
+https://i.imgur.com/JDFZYDQ.gif
 
 Candidates can create and manage their professional profiles, including personal information, education, skills, and experience.
 
 ## Jobs & Applications
 
-![Jobs and Applications](screenshots/jobandapplications.gif)
+https://i.imgur.com/7n85nN1.gif
 
 Candidates can browse available job opportunities, apply for positions, and track the status of their applications.
 
 ## ATS CV Generation
 
-![ATS CV Generation](screenshots/ATS.gif)
-
+https://i.imgur.com/V4ok4es.gif
 
 
 The platform provides an ATS-focused CV generation workflow to help candidates create structured and job-ready resumes.
@@ -54,7 +51,7 @@ AI-assisted keyword matching helps connect candidate profiles with relevant job 
 
 ## Light & Dark Mode
 
-![Light and Dark Mode](screenshots/light-mode.gif)
+https://i.imgur.com/QfNwKhG.gif
 
 The interface supports different visual themes to provide a more comfortable and personalized user experience.
 
