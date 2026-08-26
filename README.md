@@ -22,6 +22,8 @@ The candidate interface provides access to available jobs, applications, profile
 
 ![Candidate Profile](screenshots/profile.gif)
 
+
+
 Candidates can create and manage their professional profiles, including personal information, education, skills, and experience.
 
 ## Jobs & Applications
@@ -33,6 +35,8 @@ Candidates can browse available job opportunities, apply for positions, and trac
 ## ATS CV Generation
 
 ![ATS CV Generation](screenshots/ATS.gif)
+
+
 
 The platform provides an ATS-focused CV generation workflow to help candidates create structured and job-ready resumes.
 
