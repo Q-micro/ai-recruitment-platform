@@ -20,7 +20,8 @@ The candidate interface provides access to available jobs, applications, profile
 
 ## Profile Management
 
-https://i.imgur.com/JDFZYDQ.gif
+![Uploading profilelast.png…]()
+
 
 Candidates can create and manage their professional profiles, including personal information, education, skills, and experience.
 
