@@ -20,14 +20,14 @@ The candidate interface provides access to available jobs, applications, profile
 
 ## Profile Management
 
-![Uploading profilelast.png…]()
-
+![Candidate Home](screenshots/profilelast.png)
 
 Candidates can create and manage their professional profiles, including personal information, education, skills, and experience.
 
 ## Jobs & Applications
 
-https://i.imgur.com/7n85nN1.gif
+![Candidate Home](screenshots/jobandapplication.gif)
+
 
 Candidates can browse available job opportunities, apply for positions, and track the status of their applications.
 
@@ -52,7 +52,8 @@ AI-assisted keyword matching helps connect candidate profiles with relevant job 
 
 ## Light & Dark Mode
 
-https://i.imgur.com/QfNwKhG.gif
+![Candidate Home](screenshots/lightmode.gif)
+
 
 The interface supports different visual themes to provide a more comfortable and personalized user experience.
 
