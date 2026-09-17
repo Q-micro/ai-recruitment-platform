@@ -18,12 +18,6 @@ A visual walkthrough of the platform showcasing the main workflows and user expe
 
 The candidate interface provides access to available jobs, applications, profile management, notifications, and other recruitment features.
 
-## Profile Management
-
-![Candidate Home](screenshots/profilelast.png)
-
-Candidates can create and manage their professional profiles, including personal information, education, skills, and experience.
-
 ## Jobs & Applications
 
 ![Candidate Home](screenshots/jobandapplication.gif)
@@ -33,8 +27,7 @@ Candidates can browse available job opportunities, apply for positions, and trac
 
 ## ATS CV Generation
 
-https://i.imgur.com/V4ok4es.gif
-
+![Candidate Home](screenshots/atspng.png)
 
 The platform provides an ATS-focused CV generation workflow to help candidates create structured and job-ready resumes.
 
@@ -169,3 +162,13 @@ The system supports separate workflows and dashboards for candidates, employers,
 Designed and developed the platform across the frontend and backend, implemented database structures and REST APIs, developed role-based dashboards and recruitment workflows, integrated authentication and CV processing, and implemented AI-assisted recruitment and ATS CV functionality.
 
 ---
+
+##  Project & Repository Notes
+
+This project was developed as part of my university graduation project in collaboration with **Khutwa**.
+
+A public portfolio version of the project is provided here with permission from the company. To protect private information, the repository does not include company credentials, sensitive data, production configuration, or other private resources.
+
+The included data and configuration are intended for demonstration purposes. As a result, some features that depend on private credentials, external services, or production resources may not be fully functional when running the project locally.
+
+The screenshots and demonstrations included in this README showcase the functionality and user interface developed as part of the project.
