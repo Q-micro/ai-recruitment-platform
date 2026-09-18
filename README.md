@@ -1,94 +1,107 @@
-# AI Recruitment Platform
+# 💼 AI Recruitment Platform
 
 A full-stack recruitment platform designed to streamline the recruitment process for candidates, employers, and administrators. The platform combines job management, application tracking, CV processing, dashboards, and AI-assisted recruitment features in one system.
 
-## Project Demo
-
-A visual walkthrough of the platform showcasing the main workflows and user experiences across the candidate, employer, and administrator sides of the system.
-
----
 
 # Candidate Experience
 
-## Login/Sign up
 ![Candidate Home](screenshots/intro.png)
 
 ## Home & Navigation
+
+The candidate interface provides access to available job opportunities, applications, profile management, notifications, and other recruitment features.
+
+The home page also displays job matching percentages to help candidates identify opportunities that align with their profile and CV. Job opportunities are presented with the highest matching percentages at the top, making it easier for candidates to quickly identify the most relevant positions.
+
 ![Candidate Home](screenshots/home.gif)
 
-The candidate interface provides access to available jobs, applications, profile management, notifications, and other recruitment features.
 
 ## Jobs & Applications
+
+Candidates can browse available job opportunities, apply for positions, and track the status of their applications.
+
 
 ![Candidate Home](screenshots/jobandapplication.gif)
 
 
-Candidates can browse available job opportunities, apply for positions, and track the status of their applications.
 
 ## ATS CV Generation
+The platform provides an ATS-focused CV generation workflow to help candidates create structured and job-ready resumes.
+
 
 ![Candidate Home](screenshots/atspng.png)
 
-The platform provides an ATS-focused CV generation workflow to help candidates create structured and job-ready resumes.
 
-## Notifications
 
-![Candidate Notifications](screenshots/notification.png)
-
-Candidates can receive and view notifications related to their recruitment activity and applications.
-
-## AI Keyword Matching
-
-![AI Keyword Matching](screenshots/KEYWORD.gif)
-
-AI-assisted keyword matching helps connect candidate profiles with relevant job opportunities based on skills and profile information.
 
 ## Light & Dark Mode
+The interface supports different visual themes to provide a more comfortable and personalized user experience.
+
 
 ![Candidate Home](screenshots/lightmode.gif)
 
 
-The interface supports different visual themes to provide a more comfortable and personalized user experience.
+
 
 ---
 
 # Employer Experience
 
 ## Employer Dashboard
+Employers can access their recruitment dashboard to manage job postings, applicants, and hiring activities.
+
 
 ![Employer Dashboard](screenshots/employerhome.png)
 
-Employers can access their recruitment dashboard to manage job postings, applicants, and hiring activities.
 
 ## Application Management
 
+Employers can review submitted applications, view detailed candidate information, and manage application statuses throughout the recruitment process.
+
+Applications are automatically organized using candidate-to-job matching percentages, placing candidates with higher matches toward the top of the application list. This allows employers to quickly identify candidates whose profiles and CVs are more closely aligned with the requirements of the posted position.
+
+Employers can also access the candidate information provided during the application process, including their profile details, CV, LinkedIn profile, and other professional links or information they have added.
+
+The application management interface allows employers to review candidates and take action directly, including rejecting an application or moving forward with a candidate through simple application status controls.
+
+An AI-powered keyword search feature is also available to help employers narrow down applications based on specific skills, qualifications, technologies, or other keywords. This makes it easier to find relevant candidates within a larger pool of applications.
+
 ![Employer Applications](screenshots/employerapplication.png)
 
-Employers can review submitted applications, view candidate information, and manage application statuses throughout the recruitment process.
 
 ---
 
 # Administrator Experience
 
 ## Administrator Dashboard
+Administrators can monitor and manage recruitment activity across the platform.
+
 
 ![Admin Dashboard](screenshots/adminhome.png)
 
-Administrators can monitor and manage recruitment activity across the platform.
 
 ## Candidate & Recruitment Management
+The administrator interface provides tools for managing candidates, recruitment information, and overall platform activities.
+
+Administrators can view and filter candidate information to easily find and manage applicants within the recruitment system. Candidate statuses can also be updated manually, allowing administrators to keep track of each candidate's current stage and progress throughout the recruitment process.
+
 
 ![Admin Management](screenshots/admin2.png)
 
-The administrator interface provides tools for managing candidates, recruitment information, and platform activities.
+
+## AI Keyword Matching
+AI-assisted keyword matching helps connect candidate profiles with relevant job opportunities based on skills and profile information.
+
+
+![AI Keyword Matching](screenshots/KEYWORD.gif)
+
 
 ## Sales & Recruitment Analytics
+Administrative analytics provide an overview of recruitment and platform activity.
+
 
 ![Sales and Admin Analytics](screenshots/salesadmin.png)
 
-Administrative analytics provide an overview of recruitment and platform activity.
-
----
 
 # Key Features
 
@@ -131,6 +144,8 @@ Administrative analytics provide an overview of recruitment and platform activit
 
 ---
 
+---
+
 # Technologies
 
 **Frontend:** React.js, Material UI (MUI), Vite, React Router DOM
@@ -149,13 +164,6 @@ Administrative analytics provide an overview of recruitment and platform activit
 
 ---
 
-# System Overview
-
-The platform was developed using a modular full-stack architecture consisting of a React frontend, Node.js and Express.js backend, PostgreSQL database, Supabase cloud services, and AI-assisted recruitment functionality.
-
-The system supports separate workflows and dashboards for candidates, employers, and administrators while providing centralized recruitment and application management.
-
----
 
 # My Contribution
 
@@ -163,12 +171,28 @@ Designed and developed the platform across the frontend and backend, implemented
 
 ---
 
-##  Project & Repository Notes
+# Project Notes
 
-This project was developed as part of my university graduation project in collaboration with **Khutwa**.
+This repository is a public portfolio version of my internship and graduation project, developed during my work with the company.
 
-A public portfolio version of the project is provided here with permission from the company. To protect private information, the repository does not include company credentials, sensitive data, production configuration, or other private resources.
+The repository is intended to demonstrate the project's architecture, development work, implemented features, and user interface. Private company credentials, database access, API keys, OpenAI configuration, environment variables, and other sensitive resources are not included.
 
-The included data and configuration are intended for demonstration purposes. As a result, some features that depend on private credentials, external services, or production resources may not be fully functional when running the project locally.
+Some functionality depends on external services and private configuration that are not included in the public repository. As a result, certain features may not be fully available when the project is run locally or when the deployed demonstration is unavailable.
 
-The screenshots and demonstrations included in this README showcase the functionality and user interface developed as part of the project.
+The screenshots and GIF demonstrations in this README showcase the application's implemented features and user interface.
+
+# Running the Project Locally
+
+### Requirements
+
+- Node.js
+- npm
+- Docker
+- Docker Compose
+
+### Installation
+
+Install the project dependencies:
+
+```bash
+npm install
