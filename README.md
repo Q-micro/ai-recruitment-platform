@@ -60,11 +60,6 @@ Employers can review submitted applications, view detailed candidate information
 
 Applications are automatically organized using candidate-to-job matching percentages, placing candidates with higher matches toward the top of the application list. This allows employers to quickly identify candidates whose profiles and CVs are more closely aligned with the requirements of the posted position.
 
-Employers can also access the candidate information provided during the application process, including their profile details, CV, LinkedIn profile, and other professional links or information they have added.
-
-The application management interface allows employers to review candidates and take action directly, including rejecting an application or moving forward with a candidate through simple application status controls.
-
-An AI-powered keyword search feature is also available to help employers narrow down applications based on specific skills, qualifications, technologies, or other keywords. This makes it easier to find relevant candidates within a larger pool of applications.
 
 ![Employer Applications](screenshots/employerapplication.png)
 
@@ -142,7 +137,7 @@ Administrative analytics provide an overview of recruitment and platform activit
 - Candidate strengths and missing-skills analysis
 - AI-assisted match explanations
 
----
+
 
 ---
 
